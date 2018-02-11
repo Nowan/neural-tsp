@@ -26,14 +26,26 @@ namespace NeuralTSP {
             }
         }
 
-        public void Print() {
-            for (int c = 0; c < Size; c++) {
-                for (int r = 0; r < Size; r++) {
-                    Console.Write(Matrix[c, r].ToString() + " ");
+        public DataSet(int [] routeMatrix) {
+            Size = (int)(Math.Floor(Math.Sqrt(routeMatrix.Length)));
+            Matrix = new int[Size, Size];
+            for (int i = 0; i < Size; i++) {
+                for (int j = i + 1; j < Size; j++) {
+                    Matrix[i, j] = routeMatrix[i * Size + j];
+                    Matrix[j, i] = routeMatrix[j * Size + i];
                 }
-                Console.WriteLine();
             }
         }
 
+        public override String ToString() {
+            String output = "";
+            for (int c = 0; c < Size; c++) {
+                for (int r = 0; r < Size; r++) {
+                    output += Matrix[c, r].ToString() + " ";
+                }
+                output += "\n";
+            }
+            return output;
+        }
     }
 }

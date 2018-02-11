@@ -11,10 +11,10 @@ namespace NeuralTSP {
 
         }
 
-        public void PrintMatrix(Array matrix) {
-            for (int c = 0; c < matrix.GetLength(0); c++) {
-                for (int r = 0; r < matrix.GetLength(1); r++) {
-                    Console.Write(matrix.GetValue(c, r).ToString() + " ");
+        public void PrintDataSet(DataSet dataSet) {
+            for (int c = 0; c < dataSet.Size; c++) {
+                for (int r = 0; r < dataSet.Size; r++) {
+                    Console.Write(dataSet.Matrix.GetValue(c, r).ToString() + " ");
                 }
                 Console.WriteLine();
             }

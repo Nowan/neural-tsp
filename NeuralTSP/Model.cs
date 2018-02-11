@@ -7,10 +7,21 @@ using System.Threading.Tasks;
 namespace NeuralTSP {
     class Model {
 
-        public DataSet Path { get; set; }
-
+        public List<DataSet> TestSets { get; }
+        public Dictionary<DataSet, int> ExpectedResults { get; }
+        
         public Model() {
-            Path = new DataSet(6);
+            TestSets = new List<DataSet>();
+            ExpectedResults = new Dictionary<DataSet, int>();
         }
+
+        public DataSet AddTestSet(int[] setData, int expectedResult) {
+            DataSet dataSet = new DataSet(setData);
+            TestSets.Add(dataSet);
+            ExpectedResults.Add(dataSet, expectedResult);
+            return dataSet;
+        }
+
+
     }
 }

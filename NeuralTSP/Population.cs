@@ -11,9 +11,7 @@ namespace NeuralTSP {
 
         private static Random rng = new Random();
 
-        public Population(int size) : base(size) {
-            FillWithRandomValues();
-        }
+        public Population(int size) : base(size) {}
 
         public Population(IEnumerable<int> entities) : base(entities) {}
 
@@ -21,10 +19,8 @@ namespace NeuralTSP {
             return String.Join(" ", this);
         }
 
-        private void FillWithRandomValues() {
-            for (int i = 0; i < Capacity; i++) {
-                Add(rng.Next(0, 256));
-            }
+        public static Population Create(int size) {
+            return FillWithRandomEntities(new Population(size));
         }
 
         public static Population Cross(Population populationA, Population populationB) {
@@ -62,6 +58,13 @@ namespace NeuralTSP {
 
             Array.Sort(pivots);
             return pivots;
+        }
+
+        private static Population FillWithRandomEntities(Population population) {
+            for (int i = 0; i < population.Capacity; i++) {
+                population.Add(rng.Next(0, 256));
+            }
+            return population;
         }
 
         public void Dispose() {

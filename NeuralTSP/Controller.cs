@@ -6,9 +6,7 @@ using System.Threading.Tasks;
 
 namespace NeuralTSP {
     class Controller {
-
-        private const int PARTITIONS_NUMBER = 1;
-
+        
         private View View { get; }
         private Model Model { get; }
         
@@ -16,17 +14,19 @@ namespace NeuralTSP {
             View = view;
             Model = model;
 
-            var populationA = new Population(Model.Path.Size);
-            var populationB = new Population(Model.Path.Size);
-            var populationC = Population.Cross(populationA, populationB);
+            var testSet = model.AddTestSet(new int[] {
+                0, 23, 14,
+                23, 0, 9,
+                14, 9, 0
+            }, 46);
 
-            View.PrintMatrix(Model.Path.Matrix);
-
-            View.PrintPopulation(populationA);
-            View.PrintPopulation(populationB);
-            View.PrintPopulation(populationC);
-
+            Solve(testSet);
+            
             PrepareToClose();
+        }
+
+        private void Solve(DataSet dataSet) {
+            // TODO: implement generic algorithm
         }
 
         public void PrepareToClose() {
