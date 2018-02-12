@@ -9,11 +9,11 @@ namespace NeuralTSP {
 
         public int Size { get { return Capacity; } }
 
-        private static Random rng = new Random();
-
         public Population(int size) : base(size) {}
 
         public Population(IEnumerable<int> entities) : base(entities) {}
+
+        private static Random rng = new Random();
 
         public override string ToString() {
             return String.Join(" ", this);
@@ -53,7 +53,7 @@ namespace NeuralTSP {
             pivots[pivots.Length - 1] = populationSize;
             
             for (var i = 0; i < partitionsNumber; i++) {
-                pivots[i + 1] = rng.Next(1, partitionsNumber);
+                pivots[i + 1] = (int)Math.Floor(rng.Next(1000, populationSize * 1000) / 1000f);
             }
 
             Array.Sort(pivots);

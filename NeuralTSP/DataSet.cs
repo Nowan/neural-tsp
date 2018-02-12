@@ -37,6 +37,10 @@ namespace NeuralTSP {
             }
         }
 
+        public int GetDistanceBetween(int routeIndexA, int routeIndexB) {
+            return Matrix[routeIndexA, routeIndexB];
+        }
+
         public override String ToString() {
             String output = "";
             for (int c = 0; c < Size; c++) {
